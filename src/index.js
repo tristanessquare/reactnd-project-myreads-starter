@@ -1,16 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import BooksApp from './App'
-import Search from './Search'
+import App from './App'
 import './index.css'
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 
 const routing = (
     <BrowserRouter>
-        <div className="app">
-            <Route exact path="/" component={BooksApp} />
-            <Route exact path="/search" component={Search} />
-        </div>
+        <App />
     </BrowserRouter>
 )
 
