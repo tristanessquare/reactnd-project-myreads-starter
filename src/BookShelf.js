@@ -13,12 +13,12 @@ class BookShelf extends Component {
                         {this.props.shelfBooks.map(book => <Book
                             key={book.id}
                             book={book}
-                                                                 onChangeShelf={this.props.onChangeShelf}
-                                                                 idToShelfMap={this.props.idToShelfMap}/>)}
+                            onChangeShelf={this.props.onChangeShelf}
+                            idToShelfMap={this.props.idToShelfMap}/>)}
                     </ol>
                 </div>
             </div>
-        )
+        );
     }
 
 }
@@ -27,6 +27,6 @@ BookShelf.propTypes = {
     shelfBooks: PropTypes.array.isRequired,
     onChangeShelf: PropTypes.func.isRequired,
     idToShelfMap: PropTypes.object.isRequired,
-}
+};
 
-export default BookShelf
+export default BookShelf;

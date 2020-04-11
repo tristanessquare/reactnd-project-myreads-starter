@@ -1,17 +1,17 @@
 import React, {Component} from 'react'
 import PropTypes from "prop-types";
 import BookShelf from "./BookShelf";
-import { withRouter } from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 
 class BooksList extends Component {
 
     render() {
 
         const idToShelfMap = this.props.books
-            .reduce( (map, book) => {
-                map[book.id] = book.shelf
-                return map
-            }, {})
+            .reduce((map, book) => {
+                map[book.id] = book.shelf;
+                return map;
+            }, {});
 
         return (
             <div className="list-books">
@@ -21,17 +21,17 @@ class BooksList extends Component {
                 <div className="list-books-content">
                     <div>
                         <BookShelf title="Currently Reading"
-                                   shelfBooks={this.props.books.filter( book => book.shelf === 'currentlyReading')}
+                                   shelfBooks={this.props.books.filter(book => book.shelf === 'currentlyReading')}
                                    onChangeShelf={this.props.onChangeShelf}
                                    idToShelfMap={idToShelfMap}
                         />
                         <BookShelf title="Want to Read"
-                                   shelfBooks={this.props.books.filter( book => book.shelf === 'wantToRead')}
+                                   shelfBooks={this.props.books.filter(book => book.shelf === 'wantToRead')}
                                    onChangeShelf={this.props.onChangeShelf}
                                    idToShelfMap={idToShelfMap}
                         />
                         <BookShelf title="Read"
-                                   shelfBooks={this.props.books.filter( book => book.shelf === 'read')}
+                                   shelfBooks={this.props.books.filter(book => book.shelf === 'read')}
                                    onChangeShelf={this.props.onChangeShelf}
                                    idToShelfMap={idToShelfMap}
                         />
@@ -50,9 +50,9 @@ class BooksList extends Component {
 BooksList.propTypes = {
     books: PropTypes.array.isRequired,
     onChangeShelf: PropTypes.func.isRequired,
-}
+};
 
-export default withRouter(BooksList)
+export default withRouter(BooksList);
 
 
 

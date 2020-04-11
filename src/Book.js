@@ -4,25 +4,26 @@ import PropTypes from 'prop-types';
 class Book extends Component {
 
     handleChange = (event) => {
-        const { onChangeShelf, book } = this.props
+        const {onChangeShelf, book} = this.props;
         onChangeShelf(book, event.target.value);
-    }
+    };
 
     render() {
-        const { id, shelf, title, authors, imageLinks } = this.props.book
-        const imageUrl = imageLinks ? ( imageLinks.thumbnail ? imageLinks.thumbnail : '' ) : ''
-        const bookAuthors = authors ? authors : []
-        let assignedShelf = shelf
+        const {id, shelf, title, authors, imageLinks} = this.props.book;
+        const imageUrl = imageLinks ? (imageLinks.thumbnail ? imageLinks.thumbnail : '') : '';
+        const bookAuthors = authors ? authors : [];
+        let assignedShelf = shelf;
 
         if (!shelf) {
-            assignedShelf = this.props.idToShelfMap[id] ? this.props.idToShelfMap[id] : 'none'
+            assignedShelf = this.props.idToShelfMap[id] ? this.props.idToShelfMap[id] : 'none';
         }
 
         return (
             <li>
                 <div className="book">
                     <div className="book-top">
-                        <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${imageUrl})` }} />
+                        <div className="book-cover"
+                             style={{width: 128, height: 193, backgroundImage: `url(${imageUrl})`}}/>
                         <div className="book-shelf-changer">
                             <select value={assignedShelf} onChange={this.handleChange}>
                                 <option value="move" disabled>Move to...</option>
@@ -37,7 +38,7 @@ class Book extends Component {
                     <div className="book-authors">{bookAuthors.join(", ")}</div>
                 </div>
             </li>
-        )
+        );
     }
 }
 
@@ -45,6 +46,6 @@ Book.propTypes = {
     book: PropTypes.object.isRequired,
     onChangeShelf: PropTypes.func.isRequired,
     idToShelfMap: PropTypes.object.isRequired,
-}
+};
 
-export default Book
+export default Book;
