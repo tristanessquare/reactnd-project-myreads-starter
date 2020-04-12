@@ -23,6 +23,9 @@ class App extends React.Component {
         BooksAPI.update(book, newShelf).then((result) => {
             this.setState(prev => {
                 book.shelf = newShelf;
+
+                // I need to filter the books and then add the current 'book' in order to handle adding of new books to the shelfs
+                // Alternatively I could check if the book is in the 'prev.books' and only add it if this is false
                 const otherBooks = prev.books.filter(bk => bk.id !== book.id);
 
                 return {

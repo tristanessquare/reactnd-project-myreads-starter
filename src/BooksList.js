@@ -13,6 +13,21 @@ class BooksList extends Component {
                 return map;
             }, {});
 
+        const shelfs = [
+            {
+                title: "Currently Reading",
+                value: "currentlyReading"
+            },
+            {
+                title: "Want to Read",
+                value: "wantToRead"
+            },
+            {
+                title: "Read",
+                value: "read"
+            }
+        ];
+
         return (
             <div className="list-books">
                 <div className="list-books-title">
@@ -20,21 +35,14 @@ class BooksList extends Component {
                 </div>
                 <div className="list-books-content">
                     <div>
-                        <BookShelf title="Currently Reading"
-                                   shelfBooks={this.props.books.filter(book => book.shelf === 'currentlyReading')}
-                                   onChangeShelf={this.props.onChangeShelf}
-                                   idToShelfMap={idToShelfMap}
-                        />
-                        <BookShelf title="Want to Read"
-                                   shelfBooks={this.props.books.filter(book => book.shelf === 'wantToRead')}
-                                   onChangeShelf={this.props.onChangeShelf}
-                                   idToShelfMap={idToShelfMap}
-                        />
-                        <BookShelf title="Read"
-                                   shelfBooks={this.props.books.filter(book => book.shelf === 'read')}
-                                   onChangeShelf={this.props.onChangeShelf}
-                                   idToShelfMap={idToShelfMap}
-                        />
+                        {shelfs.map(shelf => (
+                            <BookShelf
+                                key={shelf.value}
+                                title={shelf.title}
+                                shelfBooks={this.props.books.filter(book => book.shelf === shelf.value)}
+                                onChangeShelf={this.props.onChangeShelf}
+                                idToShelfMap={idToShelfMap}/>
+                        ))}
                     </div>
                 </div>
 
@@ -53,11 +61,3 @@ BooksList.propTypes = {
 };
 
 export default withRouter(BooksList);
-
-
-
-
-
-
-
-

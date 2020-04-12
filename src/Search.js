@@ -12,31 +12,42 @@ class Search extends Component {
     };
 
     onInputQuery = (value) => {
-        if (!value || value === '') {
-            this.emptyResult('');
+        this.changeState(this.state.searchResult, value);
+
+        if (!value || value.trim() === '') {
+            return;
         }
 
+        this.callSearchApi(value);
+    };
+
+    callSearchApi(value) {
         BooksAPI.search(value.trim()).then(apiSearchResults => {
             if (!Array.isArray(apiSearchResults)) {
-                this.emptyResult(value);
+                this.setState(prev => (
+                    {
+                        searchResult: [],
+                        query: prev.query
+                    }
+                ));
             } else {
                 this.setState(prev => (
                     {
                         searchResult: apiSearchResults,
-                        query: value,
+                        query: prev.query
                     }
                 ));
             }
         }).catch(error => {
-            this.emptyResult(value);
+            this.changeState([], value);
         })
-    };
+    }
 
-    emptyResult(value) {
+    changeState(searchResultValue, queryValue) {
         this.setState(prev => (
             {
-                searchResult: [],
-                query: value,
+                searchResult: searchResultValue,
+                query: queryValue,
             }
         ));
     }
